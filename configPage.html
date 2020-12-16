@@ -1,44 +1,47 @@
 <head>
-<script src='https://statics.teams.cdn.office.net/sdk/v1.6.0/js/MicrosoftTeams.min.js'></script>
-</head>
-    <body>
-        <button onclick="colorClickGray()">Select Gray</button>
-        Welcome to teams tab
-        <button onclick="colorClickRed()">Select Red</button>
-
-        <script>
-            microsoftTeams.initialize();
-            let saveGray = () => {
-                microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
-                    microsoftTeams.settings.setSettings({
-                        websiteUrl: "https://gpdemo.protiviti.com/SolPlayApp/Default.aspx",
-                        contentUrl: "https://gpdemo.protiviti.com/SolPlayApp/Default.aspx",
-                        entityId: "grayIconTab",
-                        suggestedDisplayName: "MyNewTab"
+    <script src='https://statics.teams.cdn.office.net/sdk/v1.6.0/js/MicrosoftTeams.min.js'></script>
+    </head>
+        <body>
+            <button onclick="colorClickGray()">Select Gray</button>
+            Welcome to teams tab
+            <label for="tname">Tab name: </label>
+            <input type="text" id="tname" name="tname"><br><br>
+            <button onclick="colorClickRed()">Select Red</button>
+    
+            <script>
+                microsoftTeams.initialize();
+                let saveGray = () => {
+                    microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
+                        microsoftTeams.settings.setSettings({
+                            websiteUrl: "https://gpdemo.protiviti.com/SolPlayApp/Default.aspx",
+                            contentUrl: "https://gpdemo.protiviti.com/SolPlayApp/Default.aspx",
+                            entityId: "grayIconTab",
+                            suggestedDisplayName: document.getElementById('tname')
+                        });
+                        saveEvent.notifySuccess();
                     });
-                    saveEvent.notifySuccess();
-                });
-            }
-            let saveRed = () => {
-                microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
-                    microsoftTeams.settings.setSettings({
-                        websiteUrl: "https://gpdemo.protiviti.com/SolPlayApp/Default.aspx",
-                        contentUrl: "https://gpdemo.protiviti.com/SolPlayApp/Default.aspx",
-                        entityId: "redIconTab",
-                        suggestedDisplayName: "MyNewTab"
+                }
+                let saveRed = () => {
+                    microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
+                        microsoftTeams.settings.setSettings({
+                            websiteUrl: "https://gpdemo.protiviti.com/SolPlayApp/Default.aspx",
+                            contentUrl: "https://gpdemo.protiviti.com/SolPlayApp/Default.aspx",
+                            entityId: "redIconTab",
+                            suggestedDisplayName: "MyNewTab"
+                        });
+                        saveEvent.notifySuccess();
                     });
-                    saveEvent.notifySuccess();
-                });
-            }         
-
-            const colorClickGray = () => {
-                microsoftTeams.settings.setValidityState(true);
-                saveGray()
-            }
-
-            const colorClickRed = () => {
-                microsoftTeams.settings.setValidityState(true);
-                saveRed();
-            }
-        </script>
-    </body>
+                }         
+    
+                const colorClickGray = () => {
+                    microsoftTeams.settings.setValidityState(true);
+                    saveGray()
+                }
+    
+                const colorClickRed = () => {
+                    microsoftTeams.settings.setValidityState(true);
+                    saveRed();
+                }
+            </script>
+        </body>
+    
